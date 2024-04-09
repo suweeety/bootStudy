@@ -85,7 +85,7 @@ public class MemoRepositoryTests {
     }
 
     @Test
-    public void testPageDefault() {
+    public void testPageDefault() { //1페이지 10개
         Pageable pageable = PageRequest.of(0, 10); //내장된 페이징처리
 
         Page<Memo> result = memoRepository.findAll(pageable);
