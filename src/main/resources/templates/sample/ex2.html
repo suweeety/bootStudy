@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <title>dto 객체 출력해보기</title>
 </head>
+    <style>
+        .target {
+            background-color: red;
+        }
+    </style>
 <body>
+
   <ul> <!-- sno 가 5로 나눈 나머지가 0인경우에는 sno만 출력. 그렇지 않으면 first를 출력 -->
-    <li th:each="dto, status : ${list}" >
-        <span th:if="${dto.sno % 5 == 0}" th:text="${'----------------' + dto.sno}"></span> <!--for문! 모델에 있는 list 키를 가져옴-->
-        <span th:unless="${dto.sno % 5 == 0}" th:text="${dto.first}"></span>
-      <!-- list 안쪽 객체를 출력 -->
+    <li th:each="dto, status : ${list}" th:class="${dto.sno % 5 == 0}?'target'" th:text="${dto}">
     </li>
   </ul>
-
-  <ul> <!-- 삼항연산자 방식 -->
-      <li th:each="dto, state : ${list}" th:text="${dto.sno % 5 == 0} ? ${dto.sno}">
-      </li>
-  </ul>
-
-
 
 </body>
 </html>
