@@ -20,7 +20,7 @@ import java.util.stream.IntStream;
 public class SampleController {
     @GetMapping("/hello")
     public String[] hello() {
-        return new String[]{"Hello","World"};
+        return new String[]{"Hello", "World"};
     }
 
     @GetMapping("/ex1") //http://localhost/sample/ex1.html -> void는 같은 경로와 파일.html
@@ -30,10 +30,10 @@ public class SampleController {
     }
 
     //db를 안쓰고 사용
-    @GetMapping("/ex2") //http://localhost/sample/ex2.html
+    @GetMapping({"/ex2", "/exLink"}) //http://localhost/sample/ex2.html
     public void exModel(Model model) {
         //Spring은 Model 타입으로 모든 객체나 데이터를 가지고 있다.
-        List<SampleDTO> list = IntStream.rangeClosed(1,20)
+        List<SampleDTO> list = IntStream.rangeClosed(1, 20)
                 .asLongStream().mapToObj(i -> {
                     SampleDTO dto = SampleDTO.builder()
                             .sno(i)
@@ -48,5 +48,9 @@ public class SampleController {
         //프론트에서 list를 호출하면 list 객체가 나온다.
     }
 
+    @GetMapping({"/exLayout1", "/exLayout2", "/exTemplate", "/exSidebar"})
+    public void exLayout1() {
+        log.info("exLayout.....");
+    }
 
 }
