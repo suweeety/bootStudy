@@ -63,7 +63,7 @@ public class GuestbookRepositoryTests {
         //페이지 타입으로 요청을 처리한다. (0번 페이지에 10개씩 객체 생성, gno를 기준으로 내림차순 정렬
 
         QGuestbook qGuestbook = QGuestbook.guestbook; //Querydsl용 객체 생성(동적 처리)
-        String keyword = "9"; //프론트페이지에서 9번을 찾겠다. 라는 변수
+        String keyword = "1"; //프론트페이지에서 9번을 찾겠다. 라는 변수
         BooleanBuilder builder = new BooleanBuilder(); //다중 조건 처리용 객체
 
         BooleanExpression expressionTitle = qGuestbook.title.contains(keyword);

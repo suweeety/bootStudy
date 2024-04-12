@@ -18,7 +18,7 @@ public class Guestbook extends BaseEntity{
     @Column(length = 100, nullable = false) //문자100, not null
     private String title; //제목
 
-    @Column(length = 150, nullable = false) //문자100, not null
+    @Column(length = 1500, nullable = false) //문자100, not null
     private String content; //내용
 
     @Column(length = 50, nullable = false) //문자100, not null

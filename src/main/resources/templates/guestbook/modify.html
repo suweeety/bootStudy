@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+  <th:block th:fragment="content">
+
+    <h1 class="mt-4">방명록 수정페이지</h1>
+    <form action="/guestbook/modify" method="post">
+    <div class="form-group">
+      <label>번호</label>
+      <input type="text" class="form-control" name="gno" th:value="${dto.gno}" readonly> <!--읽기 전용-->
+    </div>
+    <div class="form-group">
+      <label>제목</label>
+      <input type="text" class="form-control" name="title" th:value="${dto.title}">
+    </div>
+    <div class="form-group">
+      <label>내용</label>
+      <textarea class="form-control" rows="5" name="content" th:value="${dto.content}"></textarea>
+    </div>
+    <div class="form-group">
+      <label>작성자</label>
+      <input type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly>
+    </div>
+    <!--날짜부분은 화면에서 수정 불가하고 JPA에서 자동으로 처리될 것이므로 name 속성 없이 작성됨-->
+    <div class="form-group">
+      <label>등록일</label>
+      <input type="text" class="form-control" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+    </div>
+    <div class="form-group">
+      <label>수정일</label>
+      <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+    </div>
+    </form>
+
+    <button type="button" class="btn btn-primary modifyBtn">수정</button>
+    <button type="button" class="btn btn-info listBtn">목록</button>
+    <button type="button" class="btn btn-danger removeBtn">삭제</button>
+
+  </th:block>
+
+</th:block>
+
+<script th:inline="javascript">
+  var actionForm = $("form"); //form태그 객체
+
+  $(".removeBtn").click(function (){
+    actionForm
+            .attr("action", "/guestbook/remove")
+            .attr("method", "post");
+    actionForm.submit();
+  });
+</script>
+
+</html>
