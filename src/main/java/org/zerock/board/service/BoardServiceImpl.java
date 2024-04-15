@@ -42,7 +42,13 @@ public class BoardServiceImpl implements BoardService {
         Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0],(Member) en[1],(Long) en[2]));
 
         //게시물과 댓글 수를 함께 가져오는 쿼리를 실행
-        Page<Object[]> result = repository.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("bno").descending()));
+        //Page<Object[]> result = repository.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("bno").descending()));
+
+        Page<Object[]> result = repository.searchPage(
+                pageRequestDTO.getType(),
+                pageRequestDTO.getKeyword(),
+                pageRequestDTO.getPageable(Sort.by("bno").descending())
+        );
 
         return new PageResultDTO<>(result, fn); //결과 페이지와 매핑함수를 이용해 PageResultDTO를 만든다.
     }
