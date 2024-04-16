@@ -18,4 +18,5 @@ public interface ReplyRepository extends JpaRepository<Reply, Long> {
     //게시물로 댓글 리스트 가져오기 (모든 댓글을 순번대로 가져옴)
     List<Reply> getRepliesByBoardOrderByRno(Board board);
 
+
 }
